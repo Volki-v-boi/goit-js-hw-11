@@ -9,8 +9,10 @@ function renderImageCard(image) {
 
   const link = document.createElement('a');
   link.classList.add('image-gallery');
-  link.href = image.original;
+  link.href = image.largeImageURL;
   link.setAttribute('data-lightbox', 'image-set');
+
+  // console.log(image.largeImageURL);
 
   const img = document.createElement('img');
   img.src = image.webformatURL;

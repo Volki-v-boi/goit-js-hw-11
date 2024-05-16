@@ -10,17 +10,20 @@ import {
   renderNotFoundMessage,
 } from './js/render-functions.js';
 
-const lightbox = new SimpleLightbox('.image-gallery a', {
+const lightbox = new SimpleLightbox('.image-gallery', {
   captionsData: 'alt',
   captionDelay: 250,
 });
 
+const searchInput = document.querySelector('#search-input');
+const loader = document.querySelector('.loader');
+const imagesContainer = document.querySelector('.image-gallery');
+
 function handleSearchSubmit(event) {
   event.preventDefault();
-  const searchInput = document.querySelector('#search-input');
   const searchTerm = searchInput.value;
-  const imagesContainer = document.querySelector('.image-gallery');
 
+  loader.style.display = 'block';
   imagesContainer.innerHTML = '';
 
   searchImages(searchTerm)
@@ -38,6 +41,7 @@ function handleSearchSubmit(event) {
 
     .finally(() => {
       searchInput.value = '';
+      loader.style.display = 'none';
     });
 }
 
